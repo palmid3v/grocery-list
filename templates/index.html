@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Lista de Compras</title>
+</head>
+
+<body>
+
+    <body>
+        <div class="bigdiv">
+            <h1>Lista de Compras:</h1>
+            <div class="itemssh inputssh">
+                <ul>
+                    {% for item, kg in items %}
+                    <li>{{ item }} - {{ kg }} kg</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <form action="/add" method="post">
+                <input type="text" name="item" placeholder="Escribe el producto" class="input">
+                <input type="text" name="kg" placeholder="kg" class="input">
+                <!-- <input type="submit" value="Agregar"> -->
+                <button type="submit" value="Agregar"><span class="button_top">Agregar</span></button>
+            </form>
+            <form action="/remove" method="post">
+                <input type="text" name="item" placeholder="Escribe el nombre del producto" class="input">
+                <!-- <input type="submit" value="Remover"> -->
+                <button type="submit" value="Remover"><span class="button_top">Remover</span></button>
+            </form>
+            <form action="/clear" method="POST">
+                <button type="submit"><span class="button_top">Limpiar</span></button>
+            </form>
+        </div>
+    </body>
+</body>
+
+</html>

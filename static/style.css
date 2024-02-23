@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+
+body, html{
+    font-family: 'Roboto Mono', monospace;
+}
+
+ul {
+    list-style: none;
+    text-transform: uppercase;
+    padding: 15px;
+    margin: 15px;
+}
+
+li{
+    border-bottom: 2px solid black;
+}
+
+.bigdiv {
+    /* border: 2px solid black; */
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemssh {
+    border: 2px solid black;
+    padding: 10px;
+    width: 50%;
+    margin: 5px;
+}
+
+form input {
+    padding: 15px;
+    margin: 15px;
+}
+
+
+button {
+    /* Variables */
+    --button_radius: 0.75em;
+    --button_color: #e8e8e8;
+    --button_outline_color: #000000;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--button_radius);
+    background: var(--button_outline_color);
+}
+
+.button_top {
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 0.75em 1.5em;
+    background: var(--button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+}
+
+button:hover .button_top {
+    /* Pull the button upwards when hovered */
+    transform: translateY(-0.33em);
+}
+
+button:active .button_top {
+    /* Push the button downwards when pressed */
+    transform: translateY(0);
+}
+
+/* BUTTONS */
+
+/* INPUTS */
+.input {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #323232;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
+.inputssh{
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #323232;
+    /* width: 200px;
+    height: 40px; */
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
+.itemssh {
+    width: 200px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    /* background-color: var(--input-focus); */
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: black;
+    padding: 5px 10px;
+    outline: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+}
+
+.input:focus {
+    border: 2px solid var(--input-focus);
+}
+
+/* INPUTS */
