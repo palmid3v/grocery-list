@@ -12,6 +12,7 @@ conn = psycopg2.connect(
     password='Paaccaal96#!.'
 )
 
+# this option is optional, you can create it before running code and simply comment this part or just remove it
 def create_table():
     cursor = conn.cursor()
     cursor.execute("""
