@@ -13,6 +13,9 @@
 
     <body>
         <div class="bigdiv">
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
             <h1>Lista de Compras:</h1>
             <div class="itemssh inputssh">
                 <ul>
