@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -27,12 +27,12 @@
             <form action="/add" method="post">
                 <input type="text" name="item" placeholder="Escribe el producto" class="input">
                 <input type="text" name="kg" placeholder="kg" class="input">
-                <!-- <input type="submit" value="Agregar"> -->
+                <input type="submit" value="Agregar">
                 <button type="submit" value="Agregar"><span class="button_top">Agregar</span></button>
             </form>
             <form action="/remove" method="post">
                 <input type="text" name="item" placeholder="Escribe el nombre del producto" class="input">
-                <!-- <input type="submit" value="Remover"> -->
+                <input type="submit" value="Remover">
                 <button type="submit" value="Remover"><span class="button_top">Remover</span></button>
             </form>
             <form action="/clear" method="POST">
@@ -40,6 +40,56 @@
             </form>
         </div>
     </body>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Alacena</title>
+</head>
+
+<body>
+    <div class="bigdiv">
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <h1>Alacena:</h1>
+        <div class="itemssh inputssh">
+            <ul>
+                {% for item, kg in items %}
+                <li>
+                    {{ item }} - {{ kg }} kg
+                    <!-- QR code for each item -->
+                    <!-- <img src="{{ url_for('static', filename='qrcodes/' + item + '.png') }}" alt="QR Code for {{ item }}" width="100"> -->
+                    <!-- Barcode for each item -->
+                    <img src="{{ url_for('static', filename='barcodes/' + item + '.png') }}" alt="Barcode for {{ item }}" width="100">
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <form action="/add" method="post">
+            <input type="text" name="item" placeholder="Escribe el producto" class="input" required>
+            <input type="text" name="kg" placeholder="kg" class="input" required>
+            <button type="submit" value="Agregar"><span class="button_top">Agregar</span></button>
+        </form>
+
+        <form action="/remove" method="post">
+            <input type="text" name="item" placeholder="Escribe el nombre del producto" class="input" required>
+            <button type="submit" value="Remover"><span class="button_top">Remover</span></button>
+        </form>
+
+        <form action="/clear" method="POST">
+            <button type="submit"><span class="button_top">Limpiar</span></button>
+        </form>
+    </div>
 </body>
 
 </html>

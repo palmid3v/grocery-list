@@ -1,5 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
+import barcode
+from barcode.writer import ImageWriter
+import os
+# import qrcode
+# import os
 
 app = Flask(__name__)
 
@@ -9,7 +14,7 @@ conn = psycopg2.connect(
     port='5432',
     database='grocery_shopping',
     user='postgres',
-    password='Paaccaal96#!.'
+    password='newpassword'  # Update the password here
 )
 
 # you should create first=database then tabble
@@ -44,6 +49,51 @@ def remove_item(item):
     cursor.execute("DELETE FROM groceries WHERE item = %s", (item,))
     conn.commit()
     cursor.close()
+
+# BARCODE GENERATOR
+def insert_item(item, kg):
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO groceries (item, kg) VALUES (%s, %s)", (item, kg))
+    conn.commit()
+    cursor.close()
+
+    # Generate a barcode based on item name
+    barcode_format = barcode.get_barcode_class('code128')  # You can also use 'ean13', 'code39', etc.
+    barcode_data = f'{item}-{kg}'  # You can modify the data stored in the barcode
+
+    # Generate the barcode and save it as an image
+    barcode_image = barcode_format(barcode_data, writer=ImageWriter())
+    
+    # Ensure the directory exists
+    if not os.path.exists('static/barcodes'):
+        os.makedirs('static/barcodes')
+        
+    # Save the barcode image as PNG
+    barcode_image.save(f'static/barcodes/{item}')
+# BARCODE GENERATOR
+
+# QR CODE GENERATOR
+# Modify the insert_item function to generate a QR code
+# def insert_item(item, kg):
+#     cursor = conn.cursor()
+#     cursor.execute("INSERT INTO groceries (item, kg) VALUES (%s, %s)", (item, kg))
+#     conn.commit()
+#     cursor.close()
+
+#     # Generate a QR code based on item and kg
+#     data = f'Item: {item}, Weight: {kg} kg'
+#     qr = qrcode.QRCode(version=1, box_size=10, border=5)
+#     qr.add_data(data)
+#     qr.make(fit=True)
+
+#     # Create an image from the QR code
+#     img = qr.make_image(fill='black', back_color='white')
+
+#     # Save the image in the static folder
+#     if not os.path.exists('static/qrcodes'):
+#         os.makedirs('static/qrcodes')
+#     img.save(f'static/qrcodes/{item}.png')
+# QR CODE GENERATOR
 
 
 @app.route('/')
